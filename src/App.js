@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios"
+import React from "react"
+export default function App() {
 
-function App() {
+  const memeId = 181913649
+
+  const memeCreator = async () => {
+
+    await axios.post('https://api.imgflip.com/caption_image', {
+      template_id: memeId,
+      username: 'bilalkarakollu',
+      password: '20558720558760.',
+      text0: 'annen öyle',
+      text1: 'bırak bu işleri'
+    }).then(res => {
+      console.log(res)
+    })
+
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <h1>Meme Generator</h1>
+      <button onClick={() => memeCreator()}>Create Meme</button>
+    </>
+  )
 }
-
-export default App;
